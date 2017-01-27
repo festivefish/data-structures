@@ -18,7 +18,7 @@ using namespace std;
 
 int deleteElement( product List[100], int index, int itemnum){
 	int shiftCounter = 0;
-	for (int x=index; index <= itemnum; x++){
+	for (int x=index; index < itemnum; x++){
 		List[x] = List[x+1];
 
 		shiftCounter++;
@@ -36,8 +36,8 @@ int main(){
 	product List[100];
 	product leftovers[100];
 
-	ofstream myfile;
-	myfile.open (filename, ios::out); 
+	ifstream myfile;
+	myfile.open (filename); 
 
 	/*if (myfile.is_open()){
     	while ( getline (myfile,line) ){
@@ -59,7 +59,8 @@ int main(){
     	//process the data
     	int foundmatch = 0;
     	fileCounter++;
-    	for (int i=0; i=itemnum; i++){
+    	cout<<"meme1"<<endl;
+    	for (int i=0; i<itemnum; i++){
     		if (item.itemtype == List[i].itemtype && item.forsale != List[i].forsale  && foundmatch == 0){
     			if ( item.forsale == "wanted" && item.price >= List[i].price || item.forsale == "for sale" && item.price <= List[i].price){
     				//indexes match and deletes matching item
@@ -68,19 +69,21 @@ int main(){
     				//outputs match
     				cout<<List[i].itemtype<<" "<<List[i].price<<endl;
     				//indicates that the program has found a match and can move on
-    				foundmatch == 1;
+    				foundmatch = 1;
+    				cout<<"meme2"<<endl;
     			}
-
+    			cout<<"meme3"<<endl;
     		}
     		else if (foundmatch !=1){
     			List[itemnum] = item;
     			itemnum++;
     		}
     		searchCounter++;
+    		cout<<"meme3"<<endl;
     	}
 	}
 	cout<<"#"<<endl;
-	for (int i=0; i=itemnum; i++){
+	for (int i=0; i<itemnum; i++){
 		if (List[i].forsale == "for sale"){
 			cout<<List[i].itemtype<<", "<<"for sale"<<", "<<List[i].price<<endl;
 		}
