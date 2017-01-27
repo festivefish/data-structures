@@ -36,8 +36,8 @@ int main(){
 	product List[100];
 	product leftovers[100];
 
-	ifstream myfile;
-	myfile.open (filename); 
+	//ifstream myfile;
+	//myfile.open (filename); 
 
 	/*if (myfile.is_open()){
     	while ( getline (myfile,line) ){
