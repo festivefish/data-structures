@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -36,8 +37,8 @@ int main(){
 	product List[100];
 	product leftovers[100];
 
-	//ifstream myfile;
-	//myfile.open (filename); 
+	ifstream myfile;
+	myfile.open (filename); 
 
 	/*if (myfile.is_open()){
     	while ( getline (myfile,line) ){
@@ -52,14 +53,22 @@ int main(){
     int fileCounter = 0;
     int shiftCounter = 0;
     int searchCounter = 0;
+    string line;
+    string str = (" meme");
+    //string str2 = " ";
 
-	ifstream infile(filename);
-    string delim;
-	while ((infile >> item.itemtype >> delim >> item.forsale >> delim >> item.price) && (delim == ", ")){
+	//ifstream infile(filename);
+    string token;
+	while (getline(myfile,line)){
+		//str.append(str2);
+		str.append(line);
+		istringstream ss(line);
+		while (getline(ss, token, ',')){
+			str.erase (str.begin());
+		cout<<token<<endl;
     	//process the data
     	int foundmatch = 0;
     	fileCounter++;
-    	cout<<"meme1"<<endl;
     	for (int i=0; i<itemnum; i++){
     		if (item.itemtype == List[i].itemtype && item.forsale != List[i].forsale  && foundmatch == 0){
     			if ( item.forsale == "wanted" && item.price >= List[i].price || item.forsale == "for sale" && item.price <= List[i].price){
@@ -80,6 +89,7 @@ int main(){
     		}
     		searchCounter++;
     		cout<<"meme3"<<endl;
+    	}
     	}
 	}
 	cout<<"#"<<endl;
