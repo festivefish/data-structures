@@ -14,6 +14,7 @@ bool Commonfilter(string wordn, string *commonWords){
 	bool isCommon = 0;
 	for (int i=0;i<50;i++){
 		if (wordn == commonWords[i]){
+			//cout<<wordn<<endl;
 			isCommon = 1;
 			break;
 		}
@@ -33,7 +34,6 @@ string commonWords[50] = ("the", "you", "one", "be", "do", "all", "to", "at", "w
 
 int main(int argc, char *argv[]){
 
-cout<<"memes"<<endl;
 int size = 100;
 WordStruct *uniqueWords = new WordStruct[100];
 WordStruct *x;
@@ -52,17 +52,19 @@ myfile.open (filename);
 while (getline(myfile,line,' ')){
 	currentWord.word = line;
 
-	cout<<line<<endl;
+	//cout<<line<<endl;
 
 	//checks if word is a common word
+	//cout<<currentWord.word<<endl;
+
 	common = Commonfilter(currentWord.word, commonWords);
 
 	bool unique = 1;
 
 	//if word is not common
-	if (common == 0){
+	if (common == 0 ){
 		//iterates through Unique words
-		for (int a=0;a<numUniqueWords;a++){
+		for (int a=0;a<numUniqueWords-1;a++){
 			//checks if word is already listed as a unique word
 			if (currentWord.word == uniqueWords[a].word){
 				//increases the number of times that word has been found
@@ -80,10 +82,10 @@ while (getline(myfile,line,' ')){
 			uniqueWords[numUniqueWords].word = currentWord.word;
 
 			//tests if array needs to be doubled
-			if (numUniqueWords == size) {
+			if (numUniqueWords == size - 1) {
 				//doubles array
 				x = new WordStruct[size*2];
-				for (int j=0;j<size;j++){
+				for (int j=0;j<size-1;j++){
 					x[j] = uniqueWords[j];
 				}
 				delete []uniqueWords;
@@ -96,12 +98,13 @@ while (getline(myfile,line,' ')){
 		}
 
 		numCount++;
+		//cout<<numUniqueWords<<endl;
 	}
 }
 
 //sort unique words using insertion sort
 for (int b = 0; b<numUniqueWords;b++){
-	int c = 0;
+	int c = b;
 	WordStruct temp;
 
 	while(c>0 && uniqueWords[c].numListings > uniqueWords[c-1].numListings ){
